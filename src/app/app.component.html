@@ -1,0 +1,21 @@
+<button (click)="isShown = !isShown">Toggle Element</button>
+<p 
+@showState
+*ngIf="isShown">You can see me now.</p>
+
+<br>
+<button (click)="width = width - 50">Shrink</button>
+<button (click)="animate = true">Animate Me</button>
+<p
+[@animateState]="animate ? 'animated': 'noAnimation'"
+[ngStyle]="{'width.px': width}">Shrink me!</p>
+<br>
+<button (click)="onAddElement()">Add Element</button>
+
+<div 
+    @listState 
+    (@listState.start)="onAnimationStarted($event)"
+    (@listState.done)="onAnimationDone($event)"
+    *ngFor="let testResult of testResults" 
+    class="test-result">{{testResult}}</div>
+
